@@ -1,0 +1,40 @@
+type About {
+  id: ID!
+  status: String
+  textArm: String!
+  textEng: String!
+  textRus: String!
+}
+
+type PartnerSlider {
+  id: ID!
+  filepath: String!
+  url: String
+}
+
+type HomepageSlider {
+  id: ID!
+  filepath: String!
+  position: Int!
+}
+
+type Query {
+    aboutById(id: String!): About!
+    abouts: [About!]!
+    partnerBy: [PartnerSlider!]!
+    partners: [PartnerSlider!]!
+    homepageSlider: [HomepageSlider!]!
+}
+
+type Mutation {
+    createAbout(
+    textArm:String!,
+    textRus:String!,
+    textEng:String!,
+    status:String): About!
+    updateAbouts(
+        textArm: String!
+        id: String!
+    ): About!
+}
+

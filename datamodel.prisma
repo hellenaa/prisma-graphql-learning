@@ -1,0 +1,50 @@
+type About @db(name: "about") {
+  # (DC2Type:uuid)
+  id: UUID! @id
+  status: String
+  textArm: String! @db(name: "text_arm")
+  textEng: String! @db(name: "text_eng")
+  textRus: String! @db(name: "text_rus")
+}
+
+type BlogPost @db(name: "blog_post") {
+  id: Int! @id
+  author: User! @db(name: "author_id")
+  comment: [Comment]
+  content: String!
+  published: DateTime!
+  slug: String
+  title: String!
+}
+
+type Comment @db(name: "comment") {
+  id: Int! @id
+  author: User! @db(name: "author_id")
+  blogPost: BlogPost! @db(name: "blog_post_id")
+  content: String!
+  published: DateTime!
+}
+
+type HomepageSlider @db(name: "homepage_slider") {
+  # (DC2Type:uuid)
+  id: UUID! @id
+  filepath: String!
+  position: Int @unique
+}
+
+type PartnerSlider @db(name: "partner_slider") {
+  # (DC2Type:uuid)
+  id: UUID! @id
+  filepath: String!
+  url: String
+}
+
+type User @db(name: "user") {
+  id: Int! @id
+  blogPost: [BlogPost]
+  comment: [Comment]
+  email: String! @unique
+  name: String!
+  password: String!
+  username: String! @unique
+}
